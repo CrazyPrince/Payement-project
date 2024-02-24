@@ -1,0 +1,321 @@
+<html>
+<html lang="fr">
+<head>
+        <title>Electronic payment_service</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        /* Définir les couleurs de thème sombre */
+        :root {
+            --background-color: #222;
+            --text-color: #fff;
+            --input-color: #333;
+            --button-color: #444;
+            --success-color: #0f0;
+        }
+        
+        .menu .title {
+    text-align: center;
+    color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+        }
+
+
+        /* Appliquer le style général */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            background: #222;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+        }
+
+        /* Créer un menu en haut de l'application */
+        .menu {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 50px;
+            padding: 10px;
+        }
+
+        .menu .logo {
+            width: 100px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        .menu .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Créer un formulaire de paiement avec des contours soft et ronds */
+        .form {
+            width: 80%;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid var(--input-color);
+            border-radius: 20px;
+        }
+
+        .form h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form .input-group label {
+            width: 30%;
+            font-size: 16px;
+        }
+
+        .form .input-group input {
+            width: 70%;
+            height: 30px;
+            padding: 5px;
+            border: none;
+            border-radius: 15px;
+            background-color: var(--input-color);
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        .form .input-group input:focus {
+            outline: none;
+        }
+
+        .form .input-group .logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            object-fit: contain;
+        }
+
+        .form .input-group .logo.orange {
+            display: block;
+        }
+
+        .form .input-group .logo.mtn {
+            display: none;
+        }
+
+        .form .input-group select {
+            width: 70%;
+            height: 40px;
+            padding: 5px;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--input-color);
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        .form .input-group select:focus {
+            outline: none;
+        }
+
+        .form .button {
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--button-color);
+            color: var(--text-color);
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .form .button:focus {
+            outline: none;
+        }
+
+        .form .button:hover {
+            background-color: var(--text-color);
+            color: var(--background-color);
+        }
+
+        /* Créer un message de confirmation ou d'erreur */
+        .message {
+            width: 80%;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid var(--input-color);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .message.success {
+            border-color: var(--success-color);
+            color: var(--success-color);
+        }
+
+        .message.error {
+            border-color: red;
+            color: red;
+        }
+
+        /* Créer une animation en bas de l'écran */
+        .animation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background-color: var(--background-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .animation .dot {
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            border-radius: 50%;
+            background-color: var(--text-color);
+            animation: bounce 1s infinite;
+        }
+
+        .animation .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .animation .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .animation .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+  <body style="background-image: url(https://telegra.ph/file/2bb5d87d6cd8b4f694c10.jpg); background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;" 
+   >
+<body>
+    <div class="menu">
+        <img src="https://telegra.ph/file/ad9192f299fc7135cfa7f.jpg" alt="Logo" class="logo">
+        <div class="title">Application de paiement électronique</div>
+    </div>
+    <div class="form" id="form">
+        <h1>Payer avec <span style="color:orange;">Orange Money </span>?</h1>
+        <form method="post" action="payment.php">
+            <div class="input-group">
+                <label for="amount">Montant</label>
+                <input type="number" id="amount" maxlength="5" name="amount" min="100" max="99999" required>
+            </div>
+            <div class="input-group">
+                <label for="phone_number">Numéro de téléphone</label>
+                <img src="https://telegra.ph/file/6affbac7aa87b7ab3ab6e.jpg" alt="Orange" class="logo orange">
+                <img src="https://telegra.ph/file/a4bcf37640aa9fea4af93.jpg" alt="MTN" class="logo mtn">
+                <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{9}" maxlength="9" required>
+            </div>
+            <div class="input-group">
+                <label for="payment_service">Service de paiement</label>
+                <select id="payment_service" name="payment_service" onchange="changeLogo()">
+                    <option value="OrangeMoney" selected>Orange Money</option>
+                    <option value="MobileMoney">Mobile Money MTN</option>
+                </select>
+            </div>
+            <button type="submit" class="button" id="button">Valider la transaction</button>
+        </form>
+    </div>
+    <div class="message" id="message" style="display: none;"></div>
+    <div class="animation" id="animation" style="display: none;">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+    <script>
+        // Définir les éléments du DOM
+        var form = document.getElementById("form");
+        var message = document.getElementById("message");
+        var animation = document.getElementById("animation");
+        var button = document.getElementById("button");
+        var logoOrange = document.querySelector(".logo.orange");
+        var logoMtn = document.querySelector(".logo.mtn");
+        var paymentService = document.getElementById("payment_service");
+
+        // Changer le logo selon le service de paiement choisi
+        function changeLogo() {
+            if (paymentService.value == "OrangeMoney") {
+                logoOrange.style.display = "block";
+                logoMtn.style.display = "none";
+            } else {
+                logoOrange.style.display = "none";
+                logoMtn.style.display = "block";
+            }
+        }
+
+        // Envoyer le formulaire de paiement en AJAX
+        form.addEventListener("submit", function(e) {
+            e.preventDefault(); // Empêcher le rechargement de la page
+            var formData = new FormData(form); // Récupérer les données du formulaire
+            var xhr = new XMLHttpRequest(); // Créer une requête AJAX
+            xhr.open("POST", "payment.php"); // Ouvrir la connexion vers le fichier PHP
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    var response = xhr.responseText; // Récupérer la réponse du serveur
+                    if (response.startsWith("Location: ")) {
+                        var url = response.substring(10); // Extraire l'URL de redirection
+                        window.location.href = url; // Rediriger le client vers l'URL de validation du paiement
+                    } else {
+                        // Afficher un message d'erreur
+                        form.style.display = "none";
+                        animation.style.display = "none";
+                        message.style.display = "block";
+                        message.classList.add("error");
+                        message.textContent = "Erreur : " + response;
+                    }
+                } else {
+                    // Afficher un message d'erreur
+                    form.style.display = "none";
+                    animation.style.display = "none";
+                    message.style.display = "block";
+                    message.classList.add("error");
+                    message.textContent = "Erreur : impossible de se connecter au serveur";
+                }
+            };
+            xhr.send(formData); // Envoyer les données du formulaire
+            // Afficher une animation pendant le traitement de la demande
+            form.style.display = "none";
+            animation.style.display = "flex";
+            button.disabled = true;
+            button.textContent = "Traitement de la demande en cours...";
+        });
+    </script>
+</body>
+<footer>
+
+<!-- Ajouter ce code à la fin du body -->
+<div class="footer" style="position: fixed; bottom: 0; left: 0; right: 0; height: 50px; border-top: 1px dotted gray; border-bottom: 1px dotted gray; display: flex; align-items: center; justify-content: center;">
+    <hr style="color: gray; height: 2px;"><span style="font-family: 'Comic Sans MS', cursive;">© 2024  All rights reserved @Crazy_Prince_237</span>
+</div>
+
+</footer>
+</html>
